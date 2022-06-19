@@ -1,0 +1,110 @@
+#Author: mageshkumar07@hotmail.com
+Feature: Manage Todo List
+
+  #@sanity @test
+  #----------------------Launch Browser-------------------------------#
+  Scenario: User loads the todomvc portal                                       # 01_todoList.feature:6
+    Given User loads the todomvc portal URL "https://todomvc.com/examples/vue/" # ToDoListSteps.user_loads_the_todomvc_portal_URL(String)
+
+  #----------------------Create ToDo Task-------------------------------#
+  #@sanity @test
+  Scenario Outline: Check MVC User is able to add Todo task           # 01_todoList.feature:10
+    When User entered the todomvc task name "<ToDoTaskName>"
+    Then todomvc task "<ToDoTaskName>" successfully added in the list
+
+    Examples: 
+
+  Scenario Outline: Check MVC User is able to add Todo task               # 01_todoList.feature:16
+    When User entered the todomvc task name "Schedule Interview"          # ToDoListSteps.user_entered_the_todomvc_task_name(String)
+    Then todomvc task "Schedule Interview" successfully added in the list # ToDoListSteps.todomvc_task_successfully_added_in_the_list(String)
+
+  Scenario Outline: Check MVC User is able to add Todo task                 # 01_todoList.feature:17
+    When User entered the todomvc task name "Meeting with Manager"          # ToDoListSteps.user_entered_the_todomvc_task_name(String)
+    Then todomvc task "Meeting with Manager" successfully added in the list # ToDoListSteps.todomvc_task_successfully_added_in_the_list(String)
+
+  Scenario Outline: Check MVC User is able to add Todo task                # 01_todoList.feature:18
+    When User entered the todomvc task name "Share Weekly Report"          # ToDoListSteps.user_entered_the_todomvc_task_name(String)
+    Then todomvc task "Share Weekly Report" successfully added in the list # ToDoListSteps.todomvc_task_successfully_added_in_the_list(String)
+
+  #----------------------Compelte Action-------------------------------#
+  Scenario Outline: Check MVC User is able to COMPLETE Todo task    # 01_todoList.feature:21
+    When User select the created todo task name "<ToDoTaskName>"
+    Then Verify entered task "<ToDoTaskName>" completed by TodoUser
+
+    Examples: 
+
+  Scenario Outline: Check MVC User is able to COMPLETE Todo task          # 01_todoList.feature:27
+    When User select the created todo task name "Meeting with Manager"    # ToDoListSteps.user_select_the_created_todo_task_name(String)
+    Then Verify entered task "Meeting with Manager" completed by TodoUser # ToDoListSteps.verify_entered_task_completed_by_TodoUser(String)
+
+  #----------------------Apply Compelte FILTER Action-------------------------------#
+  Scenario Outline: Check MVC User can view only TODO list using COMPLETED filter option # 01_todoList.feature:30
+    When User click on COMPLETED option
+    Then COMPLETED todo task "<ToDoTaskName>" listed successfully
+
+    Examples: 
+
+  Scenario Outline: Check MVC User can view only TODO list using COMPLETED filter option # 01_todoList.feature:36
+    When User click on COMPLETED option                                                  # ToDoListSteps.user_click_on_COMPLETED_option()
+    Then COMPLETED todo task "Meeting with Manager" listed successfully                  # ToDoListSteps.completed_todo_task_listed_successfully(String)
+
+  #----------------------Apply ACTIVE FILTER Action-------------------------------#
+  Scenario Outline: Check MVC User can view only ACTIVE todo list using ACTIVE filter option # 01_todoList.feature:39
+    When User click on ACTIVE option
+    Then ACTIVE todo task "<ToDoTaskName>" listed successfully
+
+    Examples: 
+
+  Scenario Outline: Check MVC User can view only ACTIVE todo list using ACTIVE filter option # 01_todoList.feature:45
+    When User click on ACTIVE option                                                         # ToDoListSteps.user_click_on_ACTIVE_option()
+    Then ACTIVE todo task "Schedule Interview" listed successfully                           # ToDoListSteps.active_todo_task_listed_successfully(String)
+
+  Scenario Outline: Check MVC User can view only ACTIVE todo list using ACTIVE filter option # 01_todoList.feature:46
+    When User click on ACTIVE option                                                         # ToDoListSteps.user_click_on_ACTIVE_option()
+    Then ACTIVE todo task "Share Weekly Report" listed successfully                          # ToDoListSteps.active_todo_task_listed_successfully(String)
+
+  #----------------------Apply ALL FILTER Action-------------------------------#
+  Scenario Outline: Check MVC User apply ALL filter option to view all the todo task # 01_todoList.feature:49
+    When User click on ALL option
+    Then All the todo task "<ToDoTaskName>" listed successfully
+
+    Examples: 
+
+  Scenario Outline: Check MVC User apply ALL filter option to view all the todo task # 01_todoList.feature:55
+    When User click on ALL option                                                    # ToDoListSteps.user_click_on_ALL_option()
+    Then All the todo task "Schedule Interview" listed successfully                  # ToDoListSteps.all_the_todo_task_listed_successfully(String)
+
+  Scenario Outline: Check MVC User apply ALL filter option to view all the todo task # 01_todoList.feature:56
+    When User click on ALL option                                                    # ToDoListSteps.user_click_on_ALL_option()
+    Then All the todo task "Meeting with Manager" listed successfully                # ToDoListSteps.all_the_todo_task_listed_successfully(String)
+
+  Scenario Outline: Check MVC User apply ALL filter option to view all the todo task # 01_todoList.feature:57
+    When User click on ALL option                                                    # ToDoListSteps.user_click_on_ALL_option()
+    Then All the todo task "Share Weekly Report" listed successfully                 # ToDoListSteps.all_the_todo_task_listed_successfully(String)
+
+  #----------------------PENDING ACTIVE's-------------------------------#
+  Scenario: Check MVC User can view only ACTIVE todo list using ACTIVE filter option # 01_todoList.feature:60
+    Then Check for number of active task remining                                    # ToDoListSteps.Check_for_number_of_active_task_remining()
+
+  #----------------------CLEAR COMPLETED TASK-------------------------------#
+  Scenario Outline: Check MVC User can CLEAR all the completed todo List task using clear completed option. # 01_todoList.feature:64
+    When User click on CLEAR COMPLETED option
+    Then COMPLETED todo tasks "<ToDoTaskName>" are cleared successfully
+
+    Examples: 
+
+  Scenario Outline: Check MVC User can CLEAR all the completed todo List task using clear completed option. # 01_todoList.feature:70
+    When User click on CLEAR COMPLETED option                                                               # ToDoListSteps.user_click_on_CLEAR_COMPLETED_option()
+    Then COMPLETED todo tasks "Meeting with Manager" are cleared successfully                               # ToDoListSteps.completed_todo_tasks_are_cleared_successfully(String)
+
+  #----------------------EDIT TASK-------------------------------#
+  #@sanity @test
+  Scenario Outline: Check MVC User is able to UPDATE existing Todo task                          # 01_todoList.feature:74
+    When User edit the previously created todo task name "<ToDoTaskName>" to "<UpdatedTaskName>"
+    Then todomvc task "<UpdatedTaskName>" successfully UPDATED in the list
+
+    Examples: 
+
+  Scenario Outline: Check MVC User is able to UPDATE existing Todo task                          # 01_todoList.feature:80
+    When User edit the previously created todo task name "Schedule Interview" to "HR Discussion" # ToDoListSteps.user_edit_the_previously_created_todo_task_name(String,String)
+    Then todomvc task "HR Discussion" successfully UPDATED in the list                           # ToDoListSteps.todomvc_task_successfully_UPDATED_in_the_list(String)
